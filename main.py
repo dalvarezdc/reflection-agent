@@ -45,7 +45,7 @@ graph.get_graph().print_ascii()
 if __name__ == "__main__":
     print("Hello LangGraph")
     inputs = HumanMessage(
-        content="""Make this tweet better:"
+        content="""Improve this short comment for social media post:"
                                     @LangChainAI
             — newly Tool Calling feature is seriously underrated.
 
