@@ -22,12 +22,14 @@ actor_prompt_template = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            """You are expert researcher.
-Current time: {time}
-
-1. {first_instruction}
-2. Reflect and critique your answer. Be severe to maximize improvement.
-3. Recommend search queries to research information and improve your answer.""",
+            """
+            You are an expert researcher.
+            Current time: {time}
+            
+            1. {first_instruction}
+            2. Reflect and critique your answer. Be severe to maximize improvement.
+            3. Recommend search queries to research information and improve your answer.
+            """,
         ),
         MessagesPlaceholder(variable_name="messages"),
         ("system", "Answer the user's question above using the required format."),
@@ -45,7 +47,8 @@ first_responder = first_responder_prompt_template | llm.bind_tools(
     tools=[AnswerQuestion], tool_choice="AnswerQuestion"
 )
 
-revise_instructions = """Revise your previous answer using the new information.
+revise_instructions = """
+    Revise your previous answer using the new information.
     - You should use the previous critique to add important information to your answer.
         - You MUST include numerical citations in your revised answer to ensure it can be verified.
         - Add a "References" section to the bottom of your answer (which does not count towards the word limit). In form of:
